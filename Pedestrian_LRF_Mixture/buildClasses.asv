@@ -1,0 +1,6 @@
+function [mixture1, mixture2] = buildClasses(projPedTrain, projNonPedTrain)
+
+mixture1 = gmdistribution.fit(projPedTrain, 2, 'Start', 'randSample');
+mixture2 = gmdistribution.fit(projNonPedTrain, 2, 'Start', 'randSa);
+
+end
