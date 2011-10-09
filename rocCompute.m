@@ -13,7 +13,7 @@ function [nrDimensions] = rocCompute(trainData, percentOfKeepedInfomation)
     meanMatrix = repmat(meanTrain,sizeTrain ,1); 
 
     X = trainData - meanMatrix;
-    matrix = X * X';
+    matrix = X' * X;
 
     values = eig(matrix);
 
