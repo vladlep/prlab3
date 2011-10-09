@@ -29,15 +29,15 @@ load mlpr_data\data_lrf.mat;
     end
     
     errorNonPed =0;
-    for i=1 : size(pedTest,1)
+    for i=1 : size(nonPedTest,1)
     if nonPedTest(i,:) * SOL + B > 0
         errorNonPed = errorNonPed + 1;
     end
     end
-    fprintf('error pedestrians classification ' );
-    errorPed 
+    fprintf('percent error pedestrians classification ' );
+    errorPed/ size(nonPedTest,1)
     
     fprintf('error non - pedestrians classification ' );
-    errorNonPed
+    errorNonPed/size(pedTest,1)
 end
 
