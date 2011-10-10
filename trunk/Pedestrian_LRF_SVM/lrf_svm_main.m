@@ -15,7 +15,7 @@ load ..\mlpr_data\data_lrf.mat;
     trainData = [pedData; nonPedData];
     size(trainData);
     
-    rocCompute(trainData,0.99)
+%     rocCompute(trainData,0.99)
    
     %training phase
     global  X;% defined for the svm algorithm 
@@ -28,8 +28,18 @@ load ..\mlpr_data\data_lrf.mat;
     % test phase   
     pedTest = ped_test_lrf(:,2:321);
     nonPedTest = garb_test_lrf(:,2:321);
+   
+    hold all;
     
-    testPhase(0, SOL, B,pedTest, nonPedTest);
-    
+    for i = -3.6 : 0.2: 4
+    [percentPed, percentNonPed] = testPhase(i, SOL, B,pedTest, nonPedTest);
+    plot(percentNonPed,1 - percentPed,'--rs','LineWidth',2,...
+                'MarkerEdgeColor','k',...
+                'MarkerFaceColor','g',...
+                'MarkerSize',5);
+    end
+
+    ylabel('Pedestrian detection rate');
+    xlabel('Non-pedestrians detected as pedestrians') ;
 end
 

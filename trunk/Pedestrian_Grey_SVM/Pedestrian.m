@@ -1,6 +1,6 @@
 % percent error pedestrians classification  0.3080
 % error non - pedestrians classification    0.4340
-
+% 50 iterations to train the classifier
 clc;
 clear all;
 close all;
@@ -28,5 +28,15 @@ X = trainData;
 pedTest = ped_test_int_25x50(:, 2:1251); 
 nonPedTest = garb_test_int_25x50(:, 2:1251);
 %can loop and put different thresholds 
-testPhase(0, SOL, B,pedTest, nonPedTest);
+hold all;
+for i = -30 : 2: 30
+[percentPed, percentNonPed] = testPhase(i, SOL, B,pedTest, nonPedTest);
+plot(percentNonPed,1 - percentPed,'--rs','LineWidth',2,...
+            'MarkerEdgeColor','k',...
+            'MarkerFaceColor','g',...
+            'MarkerSize',5);
+end
+
+ylabel('Pedestrian detection rate');
+xlabel('Non-pedestrians detected as pedestrians') ;
 

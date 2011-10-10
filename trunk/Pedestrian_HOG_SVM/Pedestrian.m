@@ -1,5 +1,6 @@
 % percent error pedestrians classification     0.3200
 % error non - pedestrians classification       0.1900
+% 6 iterations
 % main function fot the svm algortihm and HOG feature
 
 clc;
@@ -13,7 +14,7 @@ pedTrain = ped_train_hog(:, 2:1153);
 nonPedTrain= garb_train_hog(:, 2:1153);
 trainData = [pedTrain ; nonPedTrain];
 
-rocCompute(trainData,0.99)
+% rocCompute(trainData,0.99)
 
 labelsPed = ped_train_hog(:,1);
 labelsNonPed = garb_train_hog(:,1);
@@ -28,5 +29,14 @@ X = trainData;
 pedTest = ped_test_hog(:, 2:1153); 
 nonPedTest = garb_test_hog(:, 2:1153);
 %can loop and put different thresholds 
-testPhase(0, SOL, B,pedTest, nonPedTest);
+hold all;
+for i = -2.8 : 0.2: 3.2
+[percentPed, percentNonPed] = testPhase(i, SOL, B,pedTest, nonPedTest);
+plot(percentNonPed,1 - percentPed,'--rs','LineWidth',2,...
+            'MarkerEdgeColor','k',...
+            'MarkerFaceColor','g',...
+            'MarkerSize',5);
+end
 
+ylabel('Pedestrian detection rate');
+xlabel('Non-pedestrians detected as pedestrians') ;
