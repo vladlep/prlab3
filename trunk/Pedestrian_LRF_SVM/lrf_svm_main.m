@@ -21,23 +21,7 @@ load mlpr_data\data_lrf.mat;
     % test phase   
     pedTest = ped_test_lrf(:,2:321);
     nonPedTest = garb_test_lrf(:,2:321);
-    errorPed = 0;
-    for i=1 : size(pedTest,1)
-    if pedTest(i,:) *SOL + B < 0
-        errorPed = errorPed + 1;
-    end
-    end
+    testPhase(0, SOL, B,pedTest, nonPedTest);
     
-    errorNonPed =0;
-    for i=1 : size(nonPedTest,1)
-    if nonPedTest(i,:) * SOL + B > 0
-        errorNonPed = errorNonPed + 1;
-    end
-    end
-    fprintf('percent error pedestrians classification ' );
-    errorPed/ size(nonPedTest,1)
-    
-    fprintf('error non - pedestrians classification ' );
-    errorNonPed/size(pedTest,1)
 end
 
