@@ -29,6 +29,8 @@ pedTest = ped_test_int_25x50(:, 2:1251);
 nonPedTest = garb_test_int_25x50(:, 2:1251);
 %can loop and put different thresholds 
 hold all;
+%the extreme values where selected running the testPhase on
+%the training function and ploting the min and max val of f(x)
 for i = -30 : 2: 30
 [percentPed, percentNonPed] = testPhase(i, SOL, B,pedTest, nonPedTest);
 plot(percentNonPed,1 - percentPed,'--rs','LineWidth',2,...

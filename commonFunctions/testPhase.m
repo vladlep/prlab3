@@ -7,30 +7,18 @@ function [percentErrorPed percentErrorNonPed ] = testPhase( threshold ,SOL, B , 
 %     pedTest = ped_test_lrf(:,2:321);
 %     nonPedTest = garb_test_lrf(:,2:321);
     errorPed = 0;
-    max = 0;
     for i=1 : size(pedTest,1)
-        if max <pedTest(i,:) *SOL + B
-            max = pedTest(i,:) *SOL + B;
-        end
-    if pedTest(i,:) *SOL + B < threshold
+      if pedTest(i,:) *SOL + B < threshold
         errorPed = errorPed + 1;
-    end
+      end
     end
     
     errorNonPed =0;
-    min = 100
-    for i=1 : size(nonPedTest,1)
-     if min >pedTest(i,:) *SOL + B
-            min = pedTest(i,:) *SOL + B;
-        end    
+    for i=1 : size(nonPedTest,1)  
     if nonPedTest(i,:) * SOL + B > threshold
         errorNonPed = errorNonPed + 1;
     end
     end
-    fprintf('max');
-    max
-    fprintf('min');
-    min
     fprintf('percent error pedestrians classification ' );
     percentErrorPed =  errorPed/ size(nonPedTest,1)
     
