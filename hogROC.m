@@ -10,7 +10,7 @@ nonPedTrain = garb_train_hog(:, 2:1153);
 
 trainData = [pedTrain; nonPedTrain];
 
-nrOfDimensions  = rocCompute(trainData, 0.99)
+nrOfDimensions  = rocCompute(trainData, 0.9)
 
 end
 
