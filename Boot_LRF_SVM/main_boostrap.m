@@ -1,10 +1,11 @@
+% cu trash la 0
 % before boot 
 % percentPed =    0.3060
 % percentNonPed =    0.1780
 % 
 % after boot = 150 iterations
-% percentPed =    0.3400
-% percentNonPed =    0.1480
+% percentPed =     0.3220
+% percentNonPed =        0.1440
 
 
 load ..\mlpr_data\data_lrf.mat;
@@ -14,6 +15,9 @@ load ..\mlpr_data\data_bootstrap.mat;
 pedTrain = ped_train_lrf;
 nonPedTrain = garb_train_lrf;
 nonPedBootTest = garb_bootstrap_lrf(:,2:321);
+
+pedTest = ped_test_lrf(:,2:321);
+nonPedTest = garb_test_lrf(:,2:321);
 
 [SOL_init, B_init] = lrf_svm_compute( pedTrain,nonPedTrain);
 
@@ -29,7 +33,7 @@ while nrIteration > 0 && error > maxError
 [SOL, B] = lrf_svm_compute( pedTrain,nonPedTrain);
  
 % test on bostrap data
- missclassifiedData = testPhaseBoot(thresh, SOL, B, [garb_train_lrf(:,2:321);nonPedBootTest]);
+ missclassifiedData = testPhaseBoot(thresh, SOL, B, nonPedBootTest);
  
  nrIteration 
  
@@ -40,8 +44,7 @@ while nrIteration > 0 && error > maxError
  nrIteration = nrIteration - 1;
 end
 
-  pedTest = ped_test_lrf(:,2:321);
-  nonPedTest = garb_test_lrf(:,2:321);
+
 hold all; 
 for i = -3.6 : 0.2: 4
   [percentPed, percentNonPed] = testPhase(i, SOL_init, B_init,pedTest, nonPedTest);
@@ -61,4 +64,7 @@ end
 
 
     ylabel('Pedestrian detection rate');
-    xlabel('Non-pedestrians detected as pedestrians') ;   
+    xlabel('Non-pedestrians detected as pedestrians') ;  
+
+% [percentPed, percentNonPed] = testPhase(0, SOL_init, B_init,pedTest, nonPedTest)
+%  [percentPed, percentNonPed] = testPhase(0, SOL, B,pedTest, nonPedTest)
