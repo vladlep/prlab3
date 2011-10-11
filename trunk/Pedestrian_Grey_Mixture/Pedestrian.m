@@ -16,9 +16,9 @@ load trainNonPedestrian.mat;
 
 pedTest = ped_test_int_25x50(:, 2:1251); 
 nonPedTest = garb_test_int_25x50(:, 2:1251);
-thresh = linspace(-1, 1, 20);
+thresh = [0:0.1:1]
 
-for j = 1:length(thresh)
+for j = 1:11
     
     nPed = 0;
     nNonPed = 0;
@@ -42,8 +42,8 @@ for j = 1:length(thresh)
         end
     end
     
-    Y(j) = nPed / size(pedTest, 1);
-    X(j) = 1 - (nNonPed / size(nonPedTest, 1));
+    Y(j) = nPed / size(pedTest, 1)
+    X(j) = 1 - (nNonPed / size(nonPedTest, 1))
 
 end
 
