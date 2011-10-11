@@ -10,7 +10,7 @@ posterior2 = posterior(mixture2, projInput);
 probPed = dot(posterior1, mixture1.PComponents);
 probNonPed = dot(posterior2, mixture2.PComponents);
 
-if (probPed - probNonPed > threshold)
+if ( threshold * probPed >  (1-threshold) * probNonPed )
     ped = true;
 else
     ped = false;
