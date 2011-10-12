@@ -1,3 +1,5 @@
+% TO DO -- e doar copiat din celelalt momentan
+
 load ..\lrfSVM.mat;
 load ..\hogSVM.mat; 
 load ..\mlpr_data\data_lrf.mat;
