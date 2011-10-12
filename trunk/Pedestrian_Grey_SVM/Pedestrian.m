@@ -1,5 +1,6 @@
 % percent error pedestrians classification  0.3080
 % error non - pedestrians classification    0.4340
+% total  = 37.1 %
 % 50 iterations to train the classifier
 clc;
 clear all;

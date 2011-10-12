@@ -1,5 +1,6 @@
 % percent error pedestrians classification     0.3200
 % error non - pedestrians classification       0.1900
+% avarrage 
 % 6 iterations
 % main function fot the svm algortihm and HOG feature
 
@@ -40,6 +41,7 @@ plot(percentNonPed,1 - percentPed,'--rs','LineWidth',2,...
             'MarkerFaceColor','g',...
             'MarkerSize',5);
 end
+% [percentPed, percentNonPed] = testPhase(0, SOL, B,pedTest, nonPedTest);
 
 ylabel('Pedestrian detection rate');
 xlabel('Non-pedestrians detected as pedestrians') ;
