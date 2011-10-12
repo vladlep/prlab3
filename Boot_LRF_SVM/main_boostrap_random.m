@@ -7,20 +7,20 @@
 % percentPed =     0.3320
 % percentNonPed =       0.1340
 
-
 load ..\mlpr_data\data_lrf.mat;
 load ..\mlpr_data\data_bootstrap.mat;
 
 
-pedTrain = ped_train_lrf(:,2:321);
-nonPedTrain = garb_train_lrf(:,2:321);
+pedTrain = ped_train_lrf;
+nonPedTrain = garb_train_lrf;
 nonPedBootTest = garb_bootstrap_lrf(:,2:321);
 
 pedTest = ped_test_lrf(:,2:321);
 nonPedTest = garb_test_lrf(:,2:321);
 
-[SOL_init, B_init] = lrf_svm_compute( [pedTrain; nonPedTrain] );
+[SOL_init, B_init] = lrf_svm_compute( pedTrain, nonPedTrain );
 
+save('..\lrfSVM.mat','SOL_init', 'B_init');
 
 % test on bostrap data
 [missclassifiedData correctData] = testPhaseBoot( SOL_init, B_init, nonPedBootTest);
@@ -28,8 +28,8 @@ nonPedTest = garb_test_lrf(:,2:321);
 %  newDataLen = size(missclassifiedData,1)
 newTraining = zeros(250,321);
 for i=1:250 
-     index = random('unid', 1000 ); % Pick the index at random.
-     newTraining(i,:) = garb_bootstrap_lrf(index,:); % Add random point. 
+     index = random('unid', 1000 ); % Pick the index at random
+     newTraining(i,:) = garb_bootstrap_lrf(index,:); % Add random point 
 end
 
 nonPedTrain = [ nonPedTrain; newTraining];  
