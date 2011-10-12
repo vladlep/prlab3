@@ -4,8 +4,6 @@ function [percentErrorPed percentErrorNonPed ] = testPhase( threshold ,SOL, B , 
 %   data
 
     errorPed = 0;
-    size(SOL)
-    size(pedTest)
     for i=1 : size(pedTest,1)
       if (pedTest(i,:) * SOL + B < threshold )
         errorPed = errorPed + 1;
