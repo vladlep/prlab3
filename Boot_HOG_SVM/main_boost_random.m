@@ -4,8 +4,6 @@
 % percentNonPed =     0.1900
 
 % after bootstraping 
-% percentPed =     0.3420
-% percentNonPed =       0.1280
 
 
 load ..\mlpr_data\data_hog.mat;
