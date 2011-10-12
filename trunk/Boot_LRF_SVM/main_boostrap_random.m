@@ -3,9 +3,9 @@
 % percentPed =    0.3060
 % percentNonPed =    0.1780
 
-% after bootstraping 
-% percentPed =     0.3320
-% percentNonPed =       0.1340
+% after bootstraping random
+% percentPed =     0.3240
+% percentNonPed =       0.1600
 
 load ..\mlpr_data\data_lrf.mat;
 load ..\mlpr_data\data_bootstrap.mat;
@@ -18,7 +18,7 @@ nonPedBootTest = garb_bootstrap_lrf(:,2:321);
 pedTest = ped_test_lrf(:,2:321);
 nonPedTest = garb_test_lrf(:,2:321);
 
-[SOL_init, B_init] = lrf_svm_compute( pedTrain, nonPedTrain );
+% [SOL_init, B_init] = lrf_svm_compute( pedTrain, nonPedTrain );
 
 save('..\lrfSVM.mat','SOL_init', 'B_init');
 
@@ -34,7 +34,7 @@ end
 
 nonPedTrain = [ nonPedTrain; newTraining];  
 
-[SOL_boot, B_boot] = lrf_svm_compute( pedTrain,nonPedTrain);
+% [SOL_boot, B_boot] = lrf_svm_compute( pedTrain,nonPedTrain);
 
 hold all; 
 for i = -3.6 : 0.2: 4
@@ -56,7 +56,7 @@ end
     ylabel('Pedestrian detection rate');
     xlabel('Non-pedestrians detected as pedestrians') ;  
 
-%  [percentPed, percentNonPed] = testPhase(0, SOL_init, B_init,pedTest, nonPedTest)
+%  [percentPed, percentNonPed] = testPhase(0, SOL_init, B_init,pedTest, nonPedTest);
 %  [percentPed, percentNonPed] = testPhase(0, SOL_boot, B_boot ,pedTest, nonPedTest)
 
  
