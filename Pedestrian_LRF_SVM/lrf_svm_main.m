@@ -34,13 +34,13 @@ load ..\mlpr_data\data_lrf.mat;
     
     %-3.6 and 4, the extreme values where selected running the testPhase on
     %the training function and ploting the min and max val of f(x)
-%     for i = -3.6 : 0.2: 4
-%     [percentPed, percentNonPed] = testPhase(i, SOL, B,pedTest, nonPedTest);
-%     plot(percentNonPed,1 - percentPed,'--rs','LineWidth',2,...
-%                 'MarkerEdgeColor','k',...
-%                 'MarkerFaceColor','g',...
-%                 'MarkerSize',5);
-%     end
+    for i = -3.6 : 0.2: 4
+    [percentPed, percentNonPed] = testPhase(i, SOL, B,pedTest, nonPedTest);
+    plot(percentNonPed,1 - percentPed,'--rs','LineWidth',2,...
+                'MarkerEdgeColor','k',...
+                'MarkerFaceColor','g',...
+                'MarkerSize',5);
+    end
  [percentPed, percentNonPed] = testPhase(0, SOL, B,pedTest, nonPedTest);
  
     ylabel('Pedestrian detection rate');
