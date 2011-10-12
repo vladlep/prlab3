@@ -3,8 +3,9 @@
 % percentPed =     0.3200
 % percentNonPed =     0.1900
 
-% after bootstraping 
-
+% after bootstraping  random 
+% percentPed =     0.3460
+% percentNonPed =     0.1680
 
 load ..\mlpr_data\data_hog.mat;
 load ..\mlpr_data\data_bootstrap.mat;
@@ -26,16 +27,14 @@ save('..\hogSVM.mat','SOL_hog_init', 'B_hog_init');
  
 %  size(correctData)
 newDataLen = size(missclassifiedData,1)
-size(missclassifiedData)
- if( newDataLen <250)
-    nonPedTrain = [nonPedTrain ; missclassifiedData(:,2:1154) ]; 
-    sortedData = sortrows(correctData,1);
-    nonPedTrain = [nonPedTrain ; sortedData(1:250- newDataLen,2:1154) ]; 
- else
-     sortedData = sortrows(missclassifiedData,1);
-     nonPedTrain = [ nonPedTrain; missclassifiedData((newDataLen -249):newDataLen, 2:1154)];  
+newTraining = zeros(250,1153);
+for i=1:250 
+     index = random('unid', 1000 ); % Pick the index at random
+     newTraining(i,:) = garb_bootstrap_hog(index,:); % Add random point 
+end
+
+nonPedTrain = [ nonPedTrain; newTraining];
      
- end
 size(nonPedTrain)
 [SOL_hog_boot, B_hog_boot] = hog_svm_compute( pedTrain,nonPedTrain);
  save('..\hogSVM.mat','SOL_hog_boot', 'B_hog_boot','-append');
