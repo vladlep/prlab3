@@ -4,8 +4,9 @@
 % percentNonPed =    0.1780
 
 % after bootstraping 
-% percentPed =     0.3320
-% percentNonPed =       0.1340
+% percentPed =     0.3320  166
+% percentNonPed =       0.1340  67
+
 
 
 load ..\mlpr_data\data_lrf.mat;
@@ -52,7 +53,7 @@ for i = -3.6 : 0.2: 4
 
   [percentPed, percentNonPed] = testPhase(i, SOL_boot, B_boot ,pedTest, nonPedTest);
    plot(percentNonPed,1 - percentPed,'--rs','LineWidth',2,...
-                'MarkerEdgeColor','b',...
+                'MarkerEdgeColor','k',...
                 'MarkerFaceColor','r',...
                 'MarkerSize',5);
   

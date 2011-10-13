@@ -4,9 +4,7 @@
 % 6 iterations
 % main function fot the svm algortihm and HOG feature
 
-clc;
-clear all;
-close all;
+
 
 addpath('..\commonFunctions');
 load ..\mlpr_data\data_hog.mat;
@@ -38,7 +36,7 @@ for i = -2.8 : 0.2: 3.2
 [percentPed, percentNonPed] = testPhase(i, SOL, B,pedTest, nonPedTest);
 plot(percentNonPed,1 - percentPed,'--rs','LineWidth',2,...
             'MarkerEdgeColor','k',...
-            'MarkerFaceColor','g',...
+            'MarkerFaceColor','r',...
             'MarkerSize',5);
 end
 % [percentPed, percentNonPed] = testPhase(0, SOL, B,pedTest, nonPedTest);
