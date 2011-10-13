@@ -4,7 +4,7 @@
 % percentNonPed =     0.1900
 
 % after bootstraping 
-% percentPed =     0.3420
+% percentPed =     0.3420       171
 % percentNonPed =       0.1280
 
 
@@ -53,7 +53,7 @@ for i = -3.6 : 0.2: 4
 
   [percentPed, percentNonPed] = testPhase(i, SOL_hog_boot, B_hog_boot ,pedTest, nonPedTest);
    plot(percentNonPed,1 - percentPed,'--rs','LineWidth',2,...
-                'MarkerEdgeColor','b',...
+                'MarkerEdgeColor','k',...
                 'MarkerFaceColor','r',...
                 'MarkerSize',5);
   

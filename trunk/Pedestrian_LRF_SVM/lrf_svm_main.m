@@ -5,9 +5,6 @@ function [  ] = lrf_svm_main( )
 % error non - pedestrians classification     0.1780
 % total = 24.2
 
-clc;
-clear all;
-close all;
 
 addpath('..\commonFunctions');
 load ..\mlpr_data\data_lrf.mat;
@@ -38,7 +35,7 @@ load ..\mlpr_data\data_lrf.mat;
     [percentPed, percentNonPed] = testPhase(i, SOL, B,pedTest, nonPedTest);
     plot(percentNonPed,1 - percentPed,'--rs','LineWidth',2,...
                 'MarkerEdgeColor','k',...
-                'MarkerFaceColor','g',...
+                'MarkerFaceColor','b',...
                 'MarkerSize',5);
     end
  [percentPed, percentNonPed] = testPhase(0, SOL, B,pedTest, nonPedTest);

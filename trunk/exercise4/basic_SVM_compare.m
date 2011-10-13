@@ -1,4 +1,4 @@
-function [percentErrorPed_avg percentErrorNonPed_avg percentErrorPed_max percentErrorNonPed_max] = basic_SVM_compare(threshold)
+function [percentErrorPed_avg percentErrorNonPed_avg percentErrorPed_max percentErrorNonPed_max percentErrorPed_ideal percentErrorNonPed_ideal] = basic_SVM_compare(threshold)
 load ..\lrfSVM.mat;
 load ..\hogSVM.mat; 
 load ..\mlpr_data\data_lrf.mat;
@@ -40,8 +40,8 @@ errorPed = 0;
         end
     end
  
-    percentErrorPed_avg =  errorPed/ 500;
-    percentErrorNonPed_avg = errorNonPed/500;
+    percentErrorPed_max =  errorPed/ 500;
+    percentErrorNonPed_max = errorNonPed/500;
    
     errorPed = 0;
 
@@ -58,12 +58,25 @@ errorPed = 0;
         valueLrf = nonPedTestLrf(i,:) * sol_lrf_init + b_lrf_init;  
         valueHog = nonPedTestHog(i,:) * SOL_hog_init + B_hog_init;   
 
+        if (max(valueLrf, valueHog)> threshold)
+            errorNonPed = errorNonPed + 1;
+        end
+    end
+    
+     percentErrorPed_avg =  errorPed/ 500;
+    percentErrorNonPed_avg = errorNonPed/500;
+   
+    errorNonPed =0;
+    for i=1 :  500  
+        valueLrf = nonPedTestLrf(i,:) * sol_lrf_init + b_lrf_init;  
+        valueHog = nonPedTestHog(i,:) * SOL_hog_init + B_hog_init;   
+
         if (min(valueLrf, valueHog)> threshold)
             errorNonPed = errorNonPed + 1;
         end
     end
     
-    percentErrorPed_max =  errorPed/ 500;
-    percentErrorNonPed_max = errorNonPed/500;
-   
+    percentErrorPed_ideal =  percentErrorPed_max;
+    percentErrorNonPed_ideal = errorNonPed/500;
+    
 end
