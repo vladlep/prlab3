@@ -1,5 +1,5 @@
 % TO DO -- e doar copiat din celelalt momentan
-function [percentErrorPed_avg percentErrorNonPed_avg percentErrorPed_max percentErrorNonPed_max percentErrorPed_ideal percentErrorNonPed_ideal] = exercise4_boosted_SVM(threshold)
+function [percentErrorPed_avg percentErrorNonPed_avg percentErrorPed_max percentErrorNonPed_max percentErrorPed_ideal percentErrorNonPed_ideal] = boost_SVM_compare(threshold)
 load ..\lrfSVM.mat;
 load ..\hogSVM.mat; 
 load ..\mlpr_data\data_lrf.mat;
