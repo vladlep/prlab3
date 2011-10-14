@@ -10,7 +10,7 @@
     hold all
     
     for i = -3.6 : 0.2: 4
-    [percentPed_avg, percentNonPed_avg,percentPed_max, percentNonPed_max percentErrorPed_ideal percentErrorNonPed_ideal] = exercise4_boosted_SVM(i)
+    [percentPed_avg, percentNonPed_avg,percentPed_max, percentNonPed_max percentErrorPed_ideal percentErrorNonPed_ideal] = boost_SVM_compare(i)
  
     plot(percentPed_avg,1 - percentNonPed_avg,'--rs','LineWidth',2,...
                 'MarkerEdgeColor','k',...
@@ -28,5 +28,5 @@
  
     ylabel('Pedestrian detection rate');
     xlabel('Non-pedestrians detected as pedestrians') ;
- [percentPed_avg, percentNonPed_avg,percentPed_max, percentNonPed_max percentErrorPed_ideal percentErrorNonPed_ideal] = exercise4_boosted_SVM(0)
+ [percentPed_avg, percentNonPed_avg,percentPed_max, percentNonPed_max percentErrorPed_ideal percentErrorNonPed_ideal] = boost_SVM_compare(0)
  
